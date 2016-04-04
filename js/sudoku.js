@@ -42,9 +42,8 @@ var Engine = (function () {
                 grid = input.split("\r\n").map(function(e) {
                     return e.split(" ").map(Number);
                 });
-                console.log(grid);
                 //grid = JSON.parse("[" + e.target.result + "]");
-                instance.showValues();
+                this.showValues();
             };
             reader.readAsText(filePath.files[0]);
         }
@@ -91,8 +90,8 @@ var Engine = (function () {
     }
     
     Core.prototype.showValues = function () {
-        for (var i = 0; i < 9; i++) {
-            for (var j = 0; j < 9; j++) {
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
                 $('#it' + ((i * 9) + j)).val(
                     grid[i][j] != 0 ? grid[i][j] : ""
                 );

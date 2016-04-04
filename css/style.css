@@ -38,14 +38,14 @@ body {
 
 .grid tr:nth-child(3n) td {
     border-bottom-width: 3px;
-border-bottom-color: #000000;
+    border-bottom-color: #000000;
 }
  
 .grid input {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     text-align: center;
-    font-size: 30px;
+    font-size: 44px;
     border: none;
 }
 
@@ -54,7 +54,17 @@ border-bottom-color: #000000;
 }
 
 @media only 
-screen and (max-width: 450px),
+screen and (max-width: 630px),
+screen and (max-height: 700px) {
+    .grid input {
+        width: 48px;
+        height: 48px;
+        font-size: 30px;
+    }
+}
+
+@media only 
+screen and (max-width: 470px),
 screen and (max-height: 500px) {
     .grid input {
         width: 36px;
@@ -76,6 +86,8 @@ screen and (max-height: 400px) {
 .grid input:focus {
     outline: none;
 }
+
+/* toggle from : https://goo.gl/gMoLjr */
 
 #toggle {
     width: 30px;
