@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/ext/bootstrap.min.css" rel="stylesheet">
+    <link href="css/ext/simple-sidebar.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><a class="button" id="export-btn">Export</a></li>
+                <li><a class="button" id="import-btn">Import</a></li>
+                <li><a class="button" id="solve-btn">Solve</a></li>
+                <li><a class="button" id="clear-btn">Clear</a></li>
+                <li><a class="button" id="check-btn">Check</a></li>
+                <li><a class="button" id="hint-btn">Hint</a></li>
+            </ul>
+        </div>
+
+        <div id="page-content-wrapper">
+            <div id="toggle">
+              <div class="one"></div>
+              <div class="two"></div>
+              <div class="three"></div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="file-input" style="display: none;"/>
+    
+    <script src="js/ext/jquery.min.js"/></script>
+    <script src="js/ext/bootstrap.min.js"></script>
+    <script src="js/ext/blob.js"></script>
+    <script src="js/ext/filesaver.min.js"></script>
+    <script src="js/solver.js"></script>
+    <script src="js/sudoku.js"></script>
+    <script src="js/main.js"></script>
+    
+</body>
+    
+</html>

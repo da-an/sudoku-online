@@ -1,0 +1,105 @@
+body {
+    width: 100%;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+#grid-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid {
+	margin-left: auto;
+	margin-right: auto;
+    border-collapse: collapse;
+    margin-top: 50px;
+}
+
+.grid td {
+    border: 1px solid #000000;
+}
+    
+.grid tr:nth-child(1) td {
+    border-top-width: 3px;
+    border-top-color: #000000;
+}
+
+.grid td:nth-child(3n) {
+    border-right-width: 3px;
+    border-right-color: #000000;
+}
+
+.grid td:nth-child(1) {
+    border-left-width: 3px;
+    border-left-color: #000000;
+}
+
+.grid tr:nth-child(3n) td {
+    border-bottom-width: 3px;
+border-bottom-color: #000000;
+}
+ 
+.grid input {
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    font-size: 30px;
+    border: none;
+}
+
+.button {
+    cursor: pointer;
+}
+
+@media only 
+screen and (max-width: 450px),
+screen and (max-height: 500px) {
+    .grid input {
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+    }
+}
+
+@media only 
+screen and (max-width: 360px),
+screen and (max-height: 400px) {
+    .grid input {
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+    }
+}
+
+.grid input:focus {
+    outline: none;
+}
+
+#toggle {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#toggle div {
+    width: 100%;
+    height: 5px;
+    background: #000000;
+    margin: 4px auto;
+    transition: all 0.3s;
+    backface-visibility: hidden;
+}
+
+#toggle.on .one {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+#toggle.on .two {
+    opacity: 0;
+}
+
+#toggle.on .three {
+    transform: rotate(-45deg) translate(7px, -8px);
+}
