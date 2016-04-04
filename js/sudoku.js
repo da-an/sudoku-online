@@ -26,7 +26,7 @@ var Engine = (function () {
         for(i = 0; i < 9; i++) {
             //  output += JSON.stringify(grid[i]) + (i == 8 ? "\r\n" : ",\r\n");
             for(j = 0; j < 9; j++) {
-                output += grid[i][j] + " ";
+                output += grid[i][j] + (j == 8 ? "" : " ");
             }
             output += "\r\n";
         }
@@ -42,6 +42,7 @@ var Engine = (function () {
                 grid = input.split("\r\n").map(function(e) {
                     return e.split(" ").map(Number);
                 });
+                console.log(grid);
                 //grid = JSON.parse("[" + e.target.result + "]");
                 instance.showValues();
             };
