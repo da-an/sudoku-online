@@ -3,7 +3,7 @@
 
 'use strict';
 
-var Engine = (function () {
+var Sudoku = (function () {
     var instance, grid;
 
     function Core() {
@@ -43,7 +43,7 @@ var Engine = (function () {
                     return e.split(" ").map(Number);
                 });
                 //grid = JSON.parse("[" + e.target.result + "]");
-                this.showValues();
+                instance.showValues();
             };
             reader.readAsText(filePath.files[0]);
         }
@@ -87,7 +87,7 @@ var Engine = (function () {
             }
         }
         return nValues;
-    }
+    };
     
     Core.prototype.showValues = function () {
         for (let i = 0; i < 9; i++) {

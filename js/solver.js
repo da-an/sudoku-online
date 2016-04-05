@@ -9,7 +9,7 @@ Array.prototype.shuffle = function () {
         input[i] = itemAtIndex;
     }
     return input;
-}
+};
 
 function Solver() {
     this.gridCopy = null;
@@ -20,7 +20,7 @@ Solver.prototype.setGrid = function (grid) {
     for(let i = 0; i < 9; i++) {
         this.gridCopy[i] = grid[i].slice();
     }
-}
+};
 
 Solver.prototype.solve = function (grid) {
     this.setGrid(grid);
@@ -28,7 +28,7 @@ Solver.prototype.solve = function (grid) {
         return this.gridCopy;
     }
     return false;
-}
+};
 
 Solver.prototype.solveField = function (row, col) {
     if (this.gridCopy[row][col] == 0) {
@@ -59,7 +59,7 @@ Solver.prototype.isSafeValue = function (row, col, val) {
         this.usedInRowOrColumn(row, col, val) || 
         this.usedInSubGrid(row, col, val)
     );
-}
+};
 
 Solver.prototype.usedInRowOrColumn = function (row, col, val) {
     for(let i = 0; i < 9; i++) {

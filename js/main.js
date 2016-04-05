@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var game = Engine.getInstance();
+    var game = Sudoku.getInstance();
     game.createGrid($('#page-content-wrapper'));
         
     $('#export-btn').on('click', function () {
