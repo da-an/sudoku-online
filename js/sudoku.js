@@ -4,7 +4,7 @@
 'use strict';
 
 var Sudoku = (function () {
-    var instance, grid;
+    var instance, grid, validator;
 
     function Core() {
         grid = [
@@ -19,6 +19,7 @@ var Sudoku = (function () {
             [0, 0, 0, 0, 0, 0, 0, 0, 0]
         ];
         this.clearGrid();
+        validator = new Validator;
     }
     
     Core.prototype.exportGridToFile = function () {
@@ -59,7 +60,13 @@ var Sudoku = (function () {
                 cell.on('change', function () {
                     let id = $(this).data('coordinates');
                     let val = parseInt($(this).val());
-                    grid[id[0]][id[1]] = (val != NaN) ? val : 0;
+                    grid[id[0]][id[1]] = (val) ? val : 0;
+                    if(validator.checkConflicts(grid, id[0], id[1], val)) {
+                        $(".error").text("Conflict detected !").fadeIn(0.3);
+                    }
+                    else {
+                        $(".error").empty().fadeOut(0.3);
+                    }
                 });
                 row.append($('<td>').append(cell));
             }
@@ -75,18 +82,7 @@ var Sudoku = (function () {
             }
         }
         this.showValues();
-    };
-    
-    Core.prototype.count = function () {
-        var nValues = 0;
-        for(var i = 0; i < 9; i++) {
-            for(var j = 0; j < 9; j++) {
-                if(grid[i][j] != 0) {
-                    nValues++;
-                }
-            }
-        }
-        return nValues;
+        $(".error").empty().fadeOut(0.3);
     };
     
     Core.prototype.showValues = function () {
@@ -101,73 +97,18 @@ var Sudoku = (function () {
     
     Core.prototype.solve = function () {
         var solver = new Solver();
-        if(solver.solve(grid) && this.validateSudokuSolution(solver.getSolution())) {
+        if(solver.solve(grid) && validator.checkSolution(solver.getSolution())) {
             grid = solver.getSolution();
             this.showValues();
             return true;
         }
         return false;
     };
-     
-    Core.prototype.generatePuzzle = function (nFields) {
-        this.clearGrid();
-        var solver = new Solver(), row, col, oldValue, visited = [];
-        grid = solver.solve(grid);
-        
-        while(this.count() != nFields) {
-            row = Math.floor(Math.random() * 9);
-            col = Math.floor(Math.random() * 9);
-            for(var i = 0; i < visited.length; i++) {
-                if(visited[i] === [row, col]) {
-                    continue;
-                }
-            }
-            visited.push([row, col]);
-            oldValue = grid[row][col];
-            grid[row][col] = 0;
-            if(!validateSudokuSolution(solver.solve(grid))) {
-                grid[row][col] = oldValue;
-            }
-        }
-        this.showValues();
-    };
-    
-    Core.prototype.validateSudokuSolution = function(solution) {
-        var checksum = 362880, rowsum = 1, colsum = 1, gridsum = 1, i, j;
-        for(i = 0; i < 9; i++) {
-            rowsum = colsum = 1;
-            for(j = 0; j < 9; j++) {
-                rowsum *= solution[i][j];
-                colsum *= solution[j][i];
-                if( i % 3 == 0 && j % 3 == 0) {
-                    gridsum = this.validateSubGrid(solution, i, j);
-                    if(gridsum != checksum) {
-                        return false;
-                    }
-                    gridsum = 1;
-                }
-            }
-            if(rowsum != checksum || colsum != checksum) {
-                return false;
-            }
-        }
-        return true;
-    };
-    
-    Core.prototype.validateSubGrid = function (solution, row, col) {
-        var gridsum = 1;
-        for(var i = 0; i < 3; i++) {
-            for(var j = 0; j < 3; j++) {
-                gridsum *= solution[row + i][col + j];
-            }
-        }
-        return gridsum;
-    };
     
     Core.prototype.validateCurrentSolution = function () {
-        return this.validateSudokuSolution(grid);
+        return validator.checkSolution(grid);
     };
-    
+       
     return {
         getInstance : function () {
             return instance || (instance = new Core());

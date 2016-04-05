@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var game = Sudoku.getInstance();
-    game.createGrid($('#page-content-wrapper'));
+    game.createGrid($('#grid-wrapper'));
         
     $('#export-btn').on('click', function () {
         game.exportGridToFile();
@@ -25,13 +25,15 @@ $(document).ready(function () {
             
     $('#check-btn').on('click', function () {
         if(game.validateCurrentSolution()) {
-           alert("Correct solution !");
-        }
+            $(".error").empty().fadeOut();
+            alert("Congratulations ! Your solution is correct.");
+        } 
+        else $(".error").text("Incorrect solution").fadeIn(0.3);
     });
             
     $("#toggle").click(function(e) {
         e.preventDefault();
-        $(this).toggleClass("on");
         $("#wrapper").toggleClass("toggled");
+        $(this).toggleClass("on");
     });
 });
