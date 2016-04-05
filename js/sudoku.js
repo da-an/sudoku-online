@@ -55,17 +55,24 @@ var Sudoku = (function () {
         for (var i = 0; i < 9; i++) {
             row = $('<tr>');
             for (var j = 0; j < 9; j++) {
-                cell = $('<input id="it' + ((i * 9) + j) + '" maxlength="1">');
+                cell = $('<input id="it' + ((i * 9) + j) + '" type="tel" maxlength="1">'
+                );
                 cell.data("coordinates", [i, j]);
                 cell.on('change', function () {
                     let id = $(this).data('coordinates');
                     let val = parseInt($(this).val());
-                    grid[id[0]][id[1]] = (val) ? val : 0;
-                    if(validator.checkConflicts(grid, id[0], id[1], val)) {
-                        $(".error").text("Conflict detected !").fadeIn(0.3);
-                    }
+                    if(!isNaN(val)) {
+                        grid[id[0]][id[1]] = val;
+                        if(validator.checkConflicts(grid, id[0], id[1], val)) {
+                            $(".error").text("Conflict detected !").fadeIn(0.3);
+                        }
+                        else {
+                            $(".error").empty().fadeOut(0.3);
+                        }
+                    } 
                     else {
-                        $(".error").empty().fadeOut(0.3);
+                        grid[id[0]][id[1]] = 0;
+                        $(this).val('');
                     }
                 });
                 row.append($('<td>').append(cell));
