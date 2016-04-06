@@ -20,27 +20,27 @@ body {
 }
 
 .grid td {
-    border: 1px solid #000000;
+    border: 2px solid #000;
 }
     
 .grid tr:nth-child(1) td {
-    border-top-width: 3px;
-    border-top-color: #000000;
+    border-top-width: 4px;
+    border-top-color: #000;
 }
 
 .grid td:nth-child(3n) {
-    border-right-width: 3px;
-    border-right-color: #000000;
+    border-right-width: 4px;
+    border-right-color: #000;
 }
 
 .grid td:nth-child(1) {
-    border-left-width: 3px;
-    border-left-color: #000000;
+    border-left-width: 4px;
+    border-left-color: #000;
 }
 
 .grid tr:nth-child(3n) td {
-    border-bottom-width: 3px;
-    border-bottom-color: #000000;
+    border-bottom-width: 4px;
+    border-bottom-color: #000;
 }
  
 .grid input {
@@ -49,10 +49,18 @@ body {
     text-align: center;
     font-size: 44px;
     border: none;
+    cursor: pointer;
+    text-shadow: 0 0 0 black;
+    color: transparent;
+    outline: none;
 }
 
-.button {
-    cursor: pointer;
+.grid input:hover {
+    opacity: 0.6;
+}
+
+.grid input:focus {
+    text-shadow: 0 0 0 red;
 }
 
 @media only 
@@ -85,11 +93,11 @@ screen and (max-height: 400px) {
     }
 }
 
-.grid input:focus {
-    outline: none;
+.button {
+    cursor: pointer;
 }
 
-.error {
+.message {
     color: red;
     height: 30px;
     line-height: 30px;

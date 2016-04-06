@@ -20,15 +20,17 @@ $(document).ready(function () {
     });
             
     $('#clear-btn').on('click', function () {
-        game.clearGrid(); 
+        game.clearGrid();
+        game.refreshGrid();
     });
             
     $('#check-btn').on('click', function () {
         if(game.validateCurrentSolution()) {
-            $(".error").empty().fadeOut();
-            alert("Congratulations ! Your solution is correct.");
+            System.print("Congratulations ! Your solution is correct.", "green");
         } 
-        else $(".error").text("Incorrect solution").fadeIn(0.3);
+        else {
+            System.print("Incorrect solution !", "Red");
+        }
     });
             
     $("#toggle").click(function(e) {

@@ -1,19 +1,8 @@
 'use strict';
 
-Array.prototype.shuffle = function () {
-    let input = this, i, randomIndex, itemAtIndex;
-    for (i = input.length - 1; i >= 0; i--) {
-        randomIndex = Math.floor(Math.random() * (i + 1)); 
-        itemAtIndex = input[randomIndex];
-        input[randomIndex] = input[i]; 
-        input[i] = itemAtIndex;
-    }
-    return input;
-};
-
-function Solver() {
+function Solver(validator) {
     this.gridCopy = null;
-    this.validator = new Validator;
+    this.validator = validator;
 }
 
 Solver.prototype.setGrid = function (grid) {
@@ -29,11 +18,12 @@ Solver.prototype.solve = function (grid) {
         if(this.solveField(0, 0)) {
             return this.gridCopy;
         }
+        System.print("Unable to solve puzzle !", "Red");
         return false;
     } 
     else {
-        $(".error").text("Unable to solve puzzle !").fadeIn(0.3);
-        return false;  
+        System.print("Grid is not correct !", "Red");
+        return false;
     }
 };
 
@@ -43,7 +33,9 @@ Solver.prototype.solveField = function (row, col) {
         candidates.shuffle();
         for(let i = 0; i < candidates.length; i++) {
             this.gridCopy[row][col] = candidates[i];
-            if (!this.validator.checkConflicts(this.gridCopy, row, col, candidates[i]) && this.nextStep(row, col)) {
+            if (!this.validator.checkConflicts(
+                    this.gridCopy, row, col, candidates[i]
+            ) && this.nextStep(row, col)) {
                 return true;
             } 
             else this.gridCopy[row][col] = 0;
