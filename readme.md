@@ -6,7 +6,7 @@
 
 #### Funkcje :
 - [x] import i eksport planszy sudoku do pliku
-- [ ] możliwość wyświetlenia strony w postaci "do wydruku"
+- [x] możliwość wyświetlenia strony w postaci "do wydruku"
 - [ ] generowanie plansz o różnym poziomie trudności
 - [x] walidacja wprowadzanych danych
 - [x] algorytm do rozwiązywania sudoku

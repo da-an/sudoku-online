@@ -14,26 +14,34 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a class="button" id="export-btn">Export</a></li>
-                <li><a class="button" id="import-btn">Import</a></li>
-                <li><a class="button" id="solve-btn">Solve</a></li>
-                <li><a class="button" id="clear-btn">Clear</a></li>
-                <li><a class="button" id="check-btn">Check</a></li>
-                <li><a class="button" id="hint-btn">Hint</a></li>
+                <li><a id="import-btn">Import</a></li>
+                <li><a id="export-btn">Export</a></li>
+                <li><a id="print-btn">Print</a></li>
+                <li><a id="solve-btn">Solve</a></li>
+                <li><a id="clear-btn">Clear</a></li>
+                <li><a id="hint-btn">Hint</a></li>
+                <li><a id="check-btn">Check</a></li>
             </ul>
         </div>
-
+        
         <div id="page-content-wrapper">
             <div id="toggle">
                 <div class="one"></div>
                 <div class="two"></div>
                 <div class="three"></div>
             </div>
-            <div class="message"></div>
+            <div id="logo">Sudoku<span style="color:#00b1ff;">Online</span></div>
             <div id="grid-wrapper"></div>
+            <div class="message"></div>
+            
+            <footer class="footer">
+                <a href="https://github.com/da-an" target="_blank">&copy; 2016 Damian Barczyński</a>
+            </footer>
         </div>
     </div>
 
+    
+    
     <input type="file" id="file-input" style="display: none;"/>
     
     <script src="js/ext/jquery.min.js"/></script>

@@ -10,6 +10,11 @@ $(document).ready(function () {
         $('#file-input').click();
     });
 
+    $('#print-btn').on('click', function () {
+        $("#toggle").click();
+        window.print(); 
+    });
+    
     $('#file-input').on('change', function () {
         game.importGridFromFile(this);
         $(this).val('');
@@ -26,10 +31,10 @@ $(document).ready(function () {
             
     $('#check-btn').on('click', function () {
         if(game.validateCurrentSolution()) {
-            System.print("Congratulations ! Your solution is correct.", "green");
+            System.print("Congratulations ! Your solution is correct.", "#0093ff");
         } 
         else {
-            System.print("Incorrect solution !", "Red");
+            System.print("Your solution is wrong !", "Red");
         }
     });
             
