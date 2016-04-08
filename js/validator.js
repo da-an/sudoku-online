@@ -33,7 +33,7 @@ Validator.prototype.gridIsCorrect = function (grid) {
 };
 
 Validator.prototype.checkSolution = function (solution) {
-    var checksum = 362880, rowsum = 1, colsum = 1, gridsum = 1, i, j;
+    let checksum = 362880, rowsum = 1, colsum = 1, gridsum = 1, i, j;
         for(i = 0; i < 9; i++) {
             rowsum = colsum = 1;
             for(j = 0; j < 9; j++) {
@@ -55,7 +55,7 @@ Validator.prototype.checkSolution = function (solution) {
 };
 
 Validator.prototype.checkSubGrid = function (solution, row, col) {
-    var gridsum = 1;
+    let gridsum = 1;
     for(var i = 0; i < 3; i++) {
         for(var j = 0; j < 3; j++) {
             gridsum *= solution[row + i][col + j];

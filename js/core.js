@@ -18,11 +18,11 @@ var System = (function () {
     var currentErrTimeout = 0, msgDiv = $(".message");
     
     return {
-        print : function (message, color = 'Black') {
+        print : function (message, color = 'Black', timeout = 2000) {
             clearTimeout(currentErrTimeout);
             msgDiv.hide().css("color", color).text(message).fadeIn(200);
             currentErrTimeout = setTimeout( function() { 
-                msgDiv.fadeOut(1000); }, 2000
+                msgDiv.fadeOut(1000); }, timeout
             );
         }
     };
