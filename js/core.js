@@ -75,7 +75,8 @@ var Sudoku = (function () {
         if(!isNaN(val)) {
             grid[id[0]][id[1]] = val;
             if(validator.checkConflicts(grid, id[0], id[1], val)) {
-                System.print("Conflict detected !", "Red");
+                System.print('Conflict detected !', 'Red');
+                $(this).css('text-shadow', '0 0 0 Red');
             }
         }
         else {
@@ -86,7 +87,7 @@ var Sudoku = (function () {
     Engine.prototype.clearField = function () {
         let id = $(this).data('coordinates');
         grid[id[0]][id[1]] = 0;
-        $(this).val('');
+        $(this).val('').css('text-shadow', '0 0 0 Black');
     };
     
     Engine.prototype.clearGrid = function () {

@@ -20,6 +20,7 @@ body {
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    color: black;
 }
 
 #grid-wrapper {
@@ -42,22 +43,18 @@ body {
     
 .grid tr:nth-child(1) td {
     border-top-width: 4px;
-    border-top-color: #000;
 }
 
 .grid td:nth-child(3n) {
     border-right-width: 4px;
-    border-right-color: #000;
 }
 
 .grid td:nth-child(1) {
     border-left-width: 4px;
-    border-left-color: #000;
 }
 
 .grid tr:nth-child(3n) td {
     border-bottom-width: 4px;
-    border-bottom-color: #000;
 }
  
 .grid input {
@@ -104,7 +101,7 @@ screen and (max-height: 550px) {
     }
     
     #grid-wrapper {
-        padding-top: 10px;   
+        padding-top: 30px;   
     }
     
     footer {
@@ -126,7 +123,7 @@ screen and (max-height: 400px) {
     }
     
     #grid-wrapper {
-        padding-top: 10px;
+        padding-top: 30px;
     }
     
     footer {
