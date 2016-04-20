@@ -14,8 +14,6 @@ Array.prototype.shuffle = function () {
     return input;
 };
 
-// Tutaj znajdują się metody zarządzające komunikatami oraz zegarem.
-// Ta klasa zarządza local storage.
 var System = (function () {
     var currentErrTimeout = 0;
     
@@ -123,6 +121,10 @@ var Sudoku = (function () {
     };
     
     Engine.prototype.solve = function () {
+        if(!this.validateCurrentGrid(grid)) {
+            System.print("Grid is not correct !", "Red");
+            return false;
+        }
         if(solver.solve(grid) && validator.checkSolution(solver.getSolution())) {
             grid = solver.getSolution();
             this.refreshGrid();
@@ -131,10 +133,29 @@ var Sudoku = (function () {
         return false;
     };
     
+    Engine.prototype.getHint = function () {
+        var row, col, i, tempGrid = solver.solve(grid);
+        if(tempGrid !== false) {
+            for(i = 0; i < 50; i++) {
+                row = Math.floor(Math.random() * 9);
+                col = Math.floor(Math.random() * 9);
+                if(grid[row][col] == 0) {
+                    grid[row][col] = tempGrid[row][col];
+                    this.refreshGrid();
+                    return true;
+                }
+            }
+        }
+    }
+    
     Engine.prototype.validateCurrentSolution = function () {
         return validator.checkSolution(grid);
     };
-       
+      
+    Engine.prototype.validateCurrentGrid = function () {
+        return validator.gridIsCorrect(grid);
+    }
+    
     Engine.prototype.exportGridToFile = function () {
         var output = "", data = null, i, j;
         for(i = 0; i < 9; i++) {

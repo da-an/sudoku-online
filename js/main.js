@@ -29,6 +29,10 @@ $(document).ready(function () {
         game.refreshGrid();
     });
             
+    $('#hint-btn').on('click', function () {
+        game.getHint();
+    });
+    
     $('#check-btn').on('click', function () {
         if(game.validateCurrentSolution()) {
             System.print("Congratulations ! Your solution is correct.", "#0093ff");
