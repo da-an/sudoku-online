@@ -25,7 +25,7 @@ $(document).ready(function () {
     });
             
     $('#clear-btn').on('click', function () {
-        game.clearGrid();
+        game.clearDigitsSetByUser();
         game.refreshGrid();
     });
             

@@ -14,6 +14,8 @@ Array.prototype.shuffle = function () {
     return input;
 };
 
+// Tutaj znajdują się metody zarządzające komunikatami oraz zegarem.
+// Ta klasa zarządza local storage.
 var System = (function () {
     var currentErrTimeout = 0;
     
@@ -63,18 +65,18 @@ var Sudoku = (function () {
     Engine.prototype.createGridCell = function (i, j) {
         var cell;
         cell = $('<input id="it' + ((i * 9) + j) + '" type="tel" maxlength="1">');
-        cell.data("coordinates", [i, j]);
+        cell.data("X", i).data("Y", j);
         cell.on('keydown', this.clearField);
         cell.on('change', this.setNewValue);
         return cell;
     };
     
     Engine.prototype.setNewValue = function () {
-        let id = $(this).data('coordinates');
-        let val = parseInt($(this).val());
+        var x = $(this).data('X'), y = $(this).data("Y");
+        var val = parseInt($(this).val());
         if(!isNaN(val)) {
-            grid[id[0]][id[1]] = val;
-            if(validator.checkConflicts(grid, id[0], id[1], val)) {
+            grid[x][y] = val;
+            if(validator.checkConflicts(grid, x, y, val)) {
                 System.print('Conflict detected !', 'Red');
                 $(this).css('text-shadow', '0 0 0 Red');
             }
@@ -85,22 +87,23 @@ var Sudoku = (function () {
     };
     
     Engine.prototype.clearField = function () {
-        let id = $(this).data('coordinates');
-        grid[id[0]][id[1]] = 0;
-        $(this).val('').css('text-shadow', '0 0 0 Black').prop("disabled", false);
+        $(this).val('').css('text-shadow', '0 0 0 Black');
+        grid[$(this).data('X')][$(this).data("Y")] = 0;
     };
     
-    Engine.prototype.clearGrid = function () {
+    Engine.prototype.clearDigitsSetByUser = function () {
         for(let i = 0; i < 9; i++) {
             for(let j = 0; j < 9; j++) {
-                if(!$('#it' + ((i * 9) + j)).prop("disabled")) {
+                let handle = $('#it' + ((i * 9) + j));
+                if(!handle.prop("disabled")) {
+                    handle.val('').css('text-shadow', '0 0 0 Black');
                     grid[i][j] = 0;
                 }
             }
         }
     };
     
-    Engine.prototype.removeAllValues = function () {
+    Engine.prototype.clearGrid = function () {
         for(let i = 0; i < 9; i++) {
             for(let j = 0; j < 9; j++) {
                 $('#it' + ((i * 9) + j)).prop("disabled", false);
