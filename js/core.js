@@ -93,6 +93,16 @@ var Sudoku = (function () {
     Engine.prototype.clearGrid = function () {
         for(let i = 0; i < 9; i++) {
             for(let j = 0; j < 9; j++) {
+                if(!$('#it' + ((i * 9) + j)).prop("disabled")) {
+                    grid[i][j] = 0;
+                }
+            }
+        }
+    };
+    
+    Engine.prototype.removeAllValues = function () {
+        for(let i = 0; i < 9; i++) {
+            for(let j = 0; j < 9; j++) {
                 $('#it' + ((i * 9) + j)).prop("disabled", false);
                 grid[i][j] = 0;
             }
