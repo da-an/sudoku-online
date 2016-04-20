@@ -10,14 +10,14 @@ $(document).ready(function () {
         $('#file-input').click();
     });
 
-    $('#print-btn').on('click', function () {
-        $("#toggle").click();
-        window.print(); 
-    });
-    
     $('#file-input').on('change', function () {
         game.importGridFromFile(this);
         $(this).val('');
+    });
+    
+    $('#print-btn').on('click', function () {
+        $("#toggle").click();
+        window.print(); 
     });
     
     $('#solve-btn').on('click', function () {

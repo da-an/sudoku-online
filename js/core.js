@@ -15,14 +15,14 @@ Array.prototype.shuffle = function () {
 };
 
 var System = (function () {
-    var currentErrTimeout = 0, msgDiv = $(".message");
+    var currentErrTimeout = 0;
     
     return {
         print : function (message, color = 'Black', timeout = 2000) {
             clearTimeout(currentErrTimeout);
-            msgDiv.hide().css("color", color).text(message).fadeIn(200);
+            $(".message").hide().css("color", color).text(message).fadeIn(200);
             currentErrTimeout = setTimeout( function() { 
-                msgDiv.fadeOut(1000); }, timeout
+                $(".message").fadeOut(1000); }, timeout
             );
         }
     };
@@ -49,7 +49,7 @@ var Sudoku = (function () {
     }
     
     Engine.prototype.createGrid = function (element) {
-        let row, table = $('<table>').addClass('grid'), i, j;
+        var row, table = $('<table>').addClass('grid'), i, j;
         for (i = 0; i < 9; i++) {
             row = $('<tr>');
             for (j = 0; j < 9; j++) {
@@ -61,7 +61,7 @@ var Sudoku = (function () {
     };
     
     Engine.prototype.createGridCell = function (i, j) {
-        let cell;
+        var cell;
         cell = $('<input id="it' + ((i * 9) + j) + '" type="tel" maxlength="1">');
         cell.data("coordinates", [i, j]);
         cell.on('keydown', this.clearField);
@@ -87,22 +87,21 @@ var Sudoku = (function () {
     Engine.prototype.clearField = function () {
         let id = $(this).data('coordinates');
         grid[id[0]][id[1]] = 0;
-        $(this).val('').css('text-shadow', '0 0 0 Black');
+        $(this).val('').css('text-shadow', '0 0 0 Black').prop("disabled", false);
     };
     
     Engine.prototype.clearGrid = function () {
-        let i, j;
-        for(i = 0; i < 9; i++) {
-            for(j = 0; j < 9; j++) {
+        for(let i = 0; i < 9; i++) {
+            for(let j = 0; j < 9; j++) {
+                $('#it' + ((i * 9) + j)).prop("disabled", false);
                 grid[i][j] = 0;
             }
         }
     };
     
     Engine.prototype.refreshGrid = function () {
-        let i, j;
-        for (i = 0; i < 9; i++) {
-            for (j = 0; j < 9; j++) {
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
                 $('#it' + ((i * 9) + j)).val(
                     grid[i][j] ? grid[i][j] : ''
                 );
@@ -124,7 +123,7 @@ var Sudoku = (function () {
     };
        
     Engine.prototype.exportGridToFile = function () {
-        let output = "", data = null, i, j;
+        var output = "", data = null, i, j;
         for(i = 0; i < 9; i++) {
             for(j = 0; j < 9; j++) {
                 output += grid[i][j] + (j == 8 ? "" : " ");
@@ -136,15 +135,26 @@ var Sudoku = (function () {
     };
     
     Engine.prototype.importGridFromFile = function (filePath) {
-        let reader = new FileReader(), input = "";
+        var reader = new FileReader(), input = "";
         if(filePath.files && filePath.files[0]) {
             reader.onload = function (e) {
                 grid = e.target.result.split("\r\n").map(function(e) {
                     return e.split(" ").map(Number);
                 });
                 instance.refreshGrid();
+                instance.disableCells();
             };
             reader.readAsText(filePath.files[0]);
+        }
+    };
+    
+    Engine.prototype.disableCells = function () {
+        for(let i = 0; i < 9; i++) {
+            for(let j = 0; j < 9; j++) {
+                if(grid[i][j] != 0) {
+                    $('#it' + ((i * 9) + j)).prop("disabled", true);
+                }
+            }
         }
     };
     

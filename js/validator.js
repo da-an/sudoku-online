@@ -5,7 +5,8 @@ function Validator() {
 }
 
 Validator.prototype.checkConflicts = function (grid, row, col, val) {
-    let inRow = 0, inCol = 0, inSubGrid = 0, subGrid = [parseInt(row / 3) * 3, parseInt(col / 3) * 3];
+    var inRow = 0, inCol = 0, inSubGrid = 0; 
+    var subGrid = [parseInt(row / 3) * 3, parseInt(col / 3) * 3];
     for(let i = 0; i < 9; i++) {
         if(grid[row][i] == val) inRow++;
         if(grid[i][col] == val) inCol++;
@@ -21,7 +22,7 @@ Validator.prototype.checkConflicts = function (grid, row, col, val) {
 };
 
 Validator.prototype.gridIsCorrect = function (grid) {
-    let val = 0;
+    var val = 0;
     for(let i = 0; i < 9; i++) {
         for(let j = 0; j < 9; j++) {
             val = grid[i][j];
@@ -33,24 +34,24 @@ Validator.prototype.gridIsCorrect = function (grid) {
 };
 
 Validator.prototype.checkSolution = function (solution) {
-    let checksum = 362880, rowsum = 1, colsum = 1, gridsum = 1, i, j;
-        for(i = 0; i < 9; i++) {
-            rowsum = colsum = 1;
-            for(j = 0; j < 9; j++) {
-                rowsum *= solution[i][j];
-                colsum *= solution[j][i];
-                if( i % 3 == 0 && j % 3 == 0) {
-                    gridsum = this.checkSubGrid(solution, i, j);
-                    if(gridsum != checksum) {
-                        return false;
-                    }
-                    gridsum = 1;
+    var checksum = 362880, rowsum = 1, colsum = 1, gridsum = 1, i, j;
+    for(i = 0; i < 9; i++) {
+        rowsum = colsum = 1;
+        for(j = 0; j < 9; j++) {
+            rowsum *= solution[i][j];
+            colsum *= solution[j][i];
+            if( i % 3 == 0 && j % 3 == 0) {
+                gridsum = this.checkSubGrid(solution, i, j);
+                if(gridsum != checksum) {
+                    return false;
                 }
-            }
-            if(rowsum != checksum || colsum != checksum) {
-                return false;
+                gridsum = 1;
             }
         }
+        if(rowsum != checksum || colsum != checksum) {
+            return false;
+        }
+    }
     return true;
 };
 

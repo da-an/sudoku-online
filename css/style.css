@@ -74,7 +74,12 @@ body {
 }
 
 .grid input:focus {
-    background-color: #00b1ff;
+    background-color: #71d3ff;
+}
+
+.grid input:disabled {
+    background-color: #e8e8e8;
+    color: #535353;
 }
 
 @media only 

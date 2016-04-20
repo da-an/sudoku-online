@@ -29,7 +29,7 @@ Solver.prototype.solve = function (grid) {
 
 Solver.prototype.solveField = function (row, col) {
     if (this.gridCopy[row][col] == 0) {
-        let candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         candidates.shuffle();
         for(let i = 0; i < candidates.length; i++) {
             this.gridCopy[row][col] = candidates[i];
