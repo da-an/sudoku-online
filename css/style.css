@@ -5,6 +5,10 @@ body {
     margin: 0;
 }
 
+#message-wrapper {
+    height: 50px;
+}
+
 .message {
     line-height: 30px;
     padding: 10px 0;
@@ -12,10 +16,14 @@ body {
     font-size: 20px;
 }
 
+#nav-wrapper {
+    height: 30px;
+}
+
 #logo {
     font-size: 30px;
+    line-height: 30px;
     text-align: right;
-    margin-right: 10px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -26,7 +34,7 @@ body {
 #grid-wrapper {
     margin-left: auto;
     margin-right: auto;
-    padding-top: 50px;
+    padding-top: 10px;
     margin: 0;
     clear: both;
 }
@@ -101,12 +109,13 @@ screen and (max-height: 550px) {
         font-size: 24px;
     }
     
-    #logo {
-        font-size: 20px;
+    .message {
+        line-height: 20px;
+        font-size: 15px;
     }
     
-    #grid-wrapper {
-        padding-top: 30px;   
+    #logo {
+        font-size: 20px;
     }
     
     footer {
@@ -126,11 +135,7 @@ screen and (max-height: 400px) {
     #logo {
         font-size: 20px;
     }
-    
-    #grid-wrapper {
-        padding-top: 30px;
-    }
-    
+        
     footer {
         display: none;
     }

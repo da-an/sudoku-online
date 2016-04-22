@@ -1,9 +1,8 @@
 $(document).ready(function () {
-    var game = Sudoku.getInstance();
-    game.createGrid($('#grid-wrapper'));
+    View.createGridTable($('#grid-wrapper'));
         
     $('#export-btn').on('click', function () {
-        game.exportGridToFile();
+        System.exportGridToFile(Grid.get());
     });
 
     $('#import-btn').on('click', function () {
@@ -11,30 +10,30 @@ $(document).ready(function () {
     });
 
     $('#file-input').on('change', function () {
-        game.importGridFromFile(this);
+        System.importGridFromFile(this);
         $(this).val('');
     });
     
     $('#print-btn').on('click', function () {
         $("#toggle").click();
-        window.print(); 
+        window.print();
     });
     
     $('#solve-btn').on('click', function () {
-        game.solve();
+        Sudoku.solve();
     });
             
     $('#clear-btn').on('click', function () {
-        game.clearDigitsSetByUser();
-        game.refreshGrid();
+        Grid.clear();
+        View.updateFromGrid();
     });
             
     $('#hint-btn').on('click', function () {
-        game.getHint();
+        Sudoku.getHint();
     });
     
     $('#check-btn').on('click', function () {
-        if(game.validateCurrentSolution()) {
+        if(Validator.checkSolution(Grid.get())) {
             System.print("Congratulations ! Your solution is correct.", "#0093ff");
         } 
         else {
