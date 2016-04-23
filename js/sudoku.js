@@ -3,17 +3,6 @@
 
 'use strict';
 
-Array.prototype.shuffle = function () {
-    var randomIndex, itemAtIndex;
-    for (let i = this.length - 1; i >= 0; i--) {
-        randomIndex = Math.floor(Math.random() * (i + 1)); 
-        itemAtIndex = this[randomIndex];
-        this[randomIndex] = this[i];
-        this[i] = itemAtIndex;
-    }
-    return this;
-};
-
 var Grid = (function () {
     var grid = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -160,6 +149,17 @@ var Validator = (function () {
 var Solver = (function () {
     var gridCopy = null, candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     
+    Array.prototype.shuffle = function () {
+        var randomIndex, itemAtIndex;
+        for (let i = this.length - 1; i >= 0; i--) {
+            randomIndex = Math.floor(Math.random() * (i + 1)); 
+            itemAtIndex = this[randomIndex];
+            this[randomIndex] = this[i];
+            this[i] = itemAtIndex;
+        }
+        return this;
+    };
+    
     function setGrid(grid) {
         gridCopy = grid.slice();
         for(let i = 0; i < 9; i++) {
@@ -281,7 +281,7 @@ var View = (function () {
     };
 }());
 
-var Sudoku = (function () {
+var Game = (function () {
     return {
         solve : function () {
             if(Validator.checkGrid(Grid.get()) == false) {
@@ -295,7 +295,7 @@ var Sudoku = (function () {
             }
             return false;
         },
-        
+
         getHint : function () {
             var row, col, i, tempGrid = Solver.solve(Grid.get());
             if(tempGrid !== false) {
@@ -310,6 +310,55 @@ var Sudoku = (function () {
                 }
             }
             console.log("Unable to generate hint. Try again.");   
-        }
+        },
+
+        init : function () {
+            View.createGridTable($('#grid-wrapper'));
+
+            $("#toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+                $(this).toggleClass("on");
+            });
+
+            $('#export-btn').on('click', function () {
+                System.exportGridToFile(Grid.get());
+            });
+
+            $('#import-btn').on('click', function () {
+                $('#file-input').click();
+            });
+
+            $('#file-input').on('change', function () {
+                System.importGridFromFile(this);
+                $(this).val('');
+            });
+
+            $('#print-btn').on('click', function () {
+                $("#toggle").click();
+                window.print();
+            });
+
+            $('#solve-btn').on('click', function () {
+                Game.solve();
+            });
+
+            $('#clear-btn').on('click', function () {
+                View.clearCells();
+            });
+
+            $('#hint-btn').on('click', function () {
+                Game.getHint();
+            });
+
+            $('#check-btn').on('click', function () {
+                if(Validator.checkSolution(Grid.get())) {
+                    System.print("Congratulations ! Your solution is correct.", "#0093ff");
+                } 
+                else {
+                    System.print("Your solution is wrong !", "Red");
+                }
+            });
+        } 
     };
 }());
