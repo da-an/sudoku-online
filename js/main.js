@@ -8,12 +8,12 @@ require.config({
     shim: {
         'jQuery': {
             exports: '$'
-        },
+        }
     }
 });
 
-require(['jQuery', 'game'], function($, Game) {
+require(['jQuery', 'game', 'view'], function($, Game, View) {
     $(document).ready(function () {
-        Game.init();
+        Game.init(View);
     });
 });

@@ -33,7 +33,7 @@ define('solver', ['validator'], function(Validator) {
                 else gridCopy[row][col] = 0;
             }
             return false;
-        } 
+        }
         return stepIntoNextField(row, col);
     };
 
@@ -43,17 +43,20 @@ define('solver', ['validator'], function(Validator) {
         else return solveField(row + 1, col);
     };
     
-    return {
-        solve : function (grid) {
-            setGrid(grid);
-            if(solveField(0, 0)) {
-                return gridCopy;
-            }
-            return false;
-        },
-          
-        getSolution : function () {
+    function solve(grid) {
+        setGrid(grid);
+        if(solveField(0, 0)) {
             return gridCopy;
         }
+        return false;
+    };
+    
+    function getSolution() {
+        return gridCopy;  
+    };
+    
+    return {
+        solve : solve,
+        getSolution : getSolution
     };
 });

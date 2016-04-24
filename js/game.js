@@ -1,12 +1,8 @@
 'use strict';
 
-define('game', function(require) {
-    var $       = require('jQuery')
-    ,Grid       = require('grid')
-    ,View       = require('view')
-    ,System     = require('system')
-    ,Validator  = require('validator')
-    ,Solver     = require('solver');
+define('game', ['jQuery', 'grid', 'system', 'validator', 'solver'],
+function ($, Grid, System, Validator, Solver) {
+    var viewUpdate = null;
     
     function solve() {
         if(Validator.checkGrid(Grid.get()) == false) {
@@ -15,7 +11,7 @@ define('game', function(require) {
         }
         if(Solver.solve(Grid.get()) && Validator.checkSolution(Solver.getSolution())) {
             Grid.set(Solver.getSolution());
-            View.updateFromGrid();
+            localStorage.setItem('viewNeedUpdate', true);
             return true;
         }
         return false;   
@@ -29,7 +25,7 @@ define('game', function(require) {
                 col = Math.floor(Math.random() * 9);
                 if(Grid.fieldIsEmpty(row, col)) {
                     Grid.setField(row, col, tempGrid[row][col]);
-                    View.updateFromGrid();
+                    localStorage.setItem('viewNeedUpdate', true);
                     return true;
                 }
             }
@@ -37,58 +33,60 @@ define('game', function(require) {
         console.log("Unable to generate hint. Try again.");
     };
     
+    function init(View) {
+        View.createTable($('#grid-wrapper'));
+        viewUpdate = setInterval(View.update, 500);
+
+        $("#toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+            $(this).toggleClass("on");
+        });
+
+        $('#export-btn').on('click', function () {
+            System.exportGridToFile(Grid.get());
+        });
+
+        $('#import-btn').on('click', function () {
+            $('#file-input').click();
+        });
+
+        $('#file-input').on('change', function () {
+            System.importGridFromFile(this);
+            View.enableCells();
+            $(this).val('');
+        });
+
+        $('#print-btn').on('click', function () {
+            $("#toggle").click();
+            window.print();
+        });
+
+        $('#solve-btn').on('click', function () {
+            solve();
+        });
+
+        $('#clear-btn').on('click', function () {
+            View.clearTable();
+        });
+
+        $('#hint-btn').on('click', function () {
+            getHint();
+        });
+
+        $('#check-btn').on('click', function () {
+            if(Validator.checkSolution(Grid.get())) {
+                System.print("Congratulations ! Your solution is correct.", "#0093ff");
+            } 
+            else {
+                System.print("Your solution is wrong !", "Red");
+            }
+        });
+    };
+    
     return {
         solve : solve,
-
         getHint : getHint,
-
-        init : function () {
-            View.createGridTable($('#grid-wrapper'));
-
-            $("#toggle").click(function(e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-                $(this).toggleClass("on");
-            });
-
-            $('#export-btn').on('click', function () {
-                System.exportGridToFile(Grid.get());
-            });
-
-            $('#import-btn').on('click', function () {
-                $('#file-input').click();
-            });
-
-            $('#file-input').on('change', function () {
-                System.importGridFromFile(this);
-                $(this).val('');
-            });
-
-            $('#print-btn').on('click', function () {
-                $("#toggle").click();
-                window.print();
-            });
-
-            $('#solve-btn').on('click', function () {
-                solve();
-            });
-
-            $('#clear-btn').on('click', function () {
-                View.clearCells();
-            });
-
-            $('#hint-btn').on('click', function () {
-                getHint();
-            });
-
-            $('#check-btn').on('click', function () {
-                if(Validator.checkSolution(Grid.get())) {
-                    System.print("Congratulations ! Your solution is correct.", "#0093ff");
-                } 
-                else {
-                    System.print("Your solution is wrong !", "Red");
-                }
-            });
-        } 
+        init : init
     }; 
 });
