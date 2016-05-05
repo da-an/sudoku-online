@@ -15,7 +15,8 @@ define('view', ['system', 'grid', 'validator'], function(System, Grid, Validator
     
     function createGridCell(x, y) {
         var cell = $('<input id="it' + ((x * 9) + y) + '" type="tel" maxlength="1">');
-        cell.data("X", x).data("Y", y);
+        cell.addClass('animable');
+        cell.data('X', x).data("Y", y);
         cell.on('change', setCellValue);
         cell.on('keydown', clearCell);
         return cell;
@@ -25,7 +26,7 @@ define('view', ['system', 'grid', 'validator'], function(System, Grid, Validator
         var x   = $(this).data('X')
         ,   y   = $(this).data("Y")
         ,   val = parseInt($(this).val());
-    
+        
         if(!isNaN(val)) {
             console.log('ok');
             Grid.setField(x, y, val);

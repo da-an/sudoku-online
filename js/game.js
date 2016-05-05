@@ -37,12 +37,6 @@ function ($, Grid, System, Validator, Solver) {
         View.createTable($('#grid-wrapper'));
         viewUpdate = setInterval(View.update, 500);
 
-        $("#toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-            $(this).toggleClass("on");
-        });
-
         $('#export-btn').on('click', function () {
             System.exportGridToFile(Grid.get());
         });
@@ -58,8 +52,11 @@ function ($, Grid, System, Validator, Solver) {
         });
 
         $('#print-btn').on('click', function () {
-            $("#toggle").click();
-            window.print();
+            $('#logo').hide();
+            setTimeout(function() {
+                window.print();
+                $('#logo').show();
+            }, 500);
         });
 
         $('#solve-btn').on('click', function () {

@@ -39,7 +39,7 @@ define('validator', function() {
                     return false;
             }
         }
-        return true;  
+        return true;
     };
     
     function checkSolution(solution) {

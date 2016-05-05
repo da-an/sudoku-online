@@ -1,6 +1,6 @@
-'use strict';
-
-define('solver', ['validator'], function(Validator) {
+define('solver', ['validator'], function (Validator) {
+    'use strict';
+    
     var gridCopy = null, candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     
     Array.prototype.shuffle = function () {
@@ -38,6 +38,7 @@ define('solver', ['validator'], function(Validator) {
     };
 
     function stepIntoNextField(row, col) {
+        console.log("next field");
         if(row == 8 && col == 8) return true;
         else if (row == 8) return solveField(0, col + 1);
         else return solveField(row + 1, col);

@@ -1,41 +1,38 @@
 body {
     width: 100%;
-    font-family: sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
     color: black;
     margin: 0;
 }
 
-#message-wrapper {
-    height: 50px;
-}
-
-.message {
-    line-height: 30px;
-    padding: 10px 0;
-    text-align: center;
-    font-size: 20px;
-}
-
-#nav-wrapper {
-    height: 30px;
-}
-
-#logo {
-    font-size: 30px;
-    line-height: 30px;
-    text-align: right;
+.animable {
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
 
+#logo {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 40px;
+    font-size: 40px;
+    text-align: center;
+}
+
+nav {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 #grid-wrapper {
+    margin: 0;
     margin-left: auto;
     margin-right: auto;
     padding-top: 10px;
-    margin: 0;
     clear: both;
 }
 
@@ -47,6 +44,7 @@ body {
 
 .grid td {
     border: 2px solid #000;
+    padding: 0;
 }
     
 .grid tr:nth-child(1) td {
@@ -68,17 +66,14 @@ body {
 .grid input {
     width: 56px;
     height: 56px;
-    text-align: center;
     font-size: 35px;
-    border: none;
     cursor: pointer;
-    text-shadow: 0 0 0 black;
     color: transparent;
+    text-align: center;
+    text-shadow: 0 0 0 black;
+    font-weight: bold;
     outline: none;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    border: none;
 }
 
 .grid input:focus {
@@ -90,82 +85,33 @@ body {
     color: #535353;
 }
 
+#message-wrapper {
+    height: 30px;
+    padding: 20px;
+}
+
+.message {
+    line-height: 30px;
+    text-align: center;
+    font-size: 20px;
+}
+
 @media only 
 screen and (max-width: 630px),
 screen and (max-height: 700px) {
     .grid input {
-        width: 48px;
-        height: 48px;
-        font-size: 30px;
-    }
-}
-
-@media only 
-screen and (max-width: 470px),
-screen and (max-height: 550px) {
-    .grid input {
         width: 36px;
         height: 36px;
-        font-size: 24px;
-    }
-    
-    .message {
-        line-height: 20px;
-        font-size: 15px;
+        font-size: 30px;
     }
     
     #logo {
-        font-size: 20px;
-    }
-    
-    footer {
-        display: none;
+        line-height: 35px;
+        font-size: 35px;
     }
 }
 
-@media only 
-screen and (max-width: 360px),
-screen and (max-height: 400px) {
-    .grid input {
-        width: 24px;
-        height: 24px;
-        font-size: 16px;
-    }
-    
-    #logo {
-        font-size: 20px;
-    }
-        
-    footer {
-        display: none;
-    }
-}
-
-footer {
+.mdl-menu__item {
+    font-weight: bold;
     text-align: center;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled footer {
-    width: calc(100% - 70px);
-}
-
-footer a {
-    font-size: 11px;
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-footer a:hover,
-footer a:visited,
-footer a:focus {
-    text-decoration: none;
-    color: black;
 }

@@ -5,54 +5,66 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/ext/bootstrap.min.css" rel="stylesheet">
-    <link href="css/ext/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <link href='https://goo.gl/ayKNVI' rel='stylesheet' type='text/css'>
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <div id="wrapper">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li><a id="import-btn">Import</a></li>
-                <li><a id="export-btn">Export</a></li>
-                <li><a id="print-btn">Print</a></li>
-                <li><a id="solve-btn">Solve</a></li>
-                <li><a id="clear-btn">Clear</a></li>
-                <li><a id="hint-btn">Hint</a></li>
-                <li><a id="check-btn">Check</a></li>
-                <li><a id="easy-btn">Easy</a></li>
-                <li><a id="medium-btn">Medium</a></li>
-                <li><a id="hard-btn">Hard</a></li>
-            </ul>
-        </div>
-        
-        <div id="page-content-wrapper">
-            <div id="nav-wrapper">
-                <div id="toggle">
-                    <div class="one"></div>
-                    <div class="two"></div>
-                    <div class="three"></div>
-                </div>
-                <div id="logo">Sudoku<span style="color:#00b1ff;">Online</span></div>
-            </div>
-            
-            <div id="message-wrapper">
-                <div class="message"></div>
-            </div>
-            
-            <div id="grid-wrapper"></div>
-            
-            <footer class="footer">
-                <a href="https://github.com/da-an" target="_blank">&copy; 2016 Damian Barczyński</a>
-            </footer>
-        </div>
-    </div>
+    <div id="logo" class="animable">Sudoku<span style="color:#00b1ff;">Online</span></div>
+    <nav>
+        <button id="file-menu" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">insert_drive_file</i>
+        </button>
 
+        <button id="generator-menu" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">apps</i>
+        </button>
+        
+        <button id="game-menu" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">settings</i>
+        </button>
+        
+        <button id="about-menu" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">info</i>
+        </button>
+        
+        <div class="mdl-tooltip" for="file-menu">File</div>
+        <div class="mdl-tooltip" for="generator-menu">Generate</div>
+        <div class="mdl-tooltip" for="game-menu">Game</div>
+        <div class="mdl-tooltip" for="about-menu">About</div>
+        
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="file-menu">
+            <li id="import-btn" class="mdl-menu__item">Import</li>
+            <li id="export-btn" class="mdl-menu__item">Export</li>
+            <li id="print-btn"  class="mdl-menu__item">Print</li>
+        </ul>
+        
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="generator-menu">
+            <li class="mdl-menu__item">Easy</li>
+            <li class="mdl-menu__item">Medium</li>
+            <li class="mdl-menu__item">Hard</li>
+        </ul>
+        
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="game-menu">
+            <li id="solve-btn" class="mdl-menu__item">Solve</li>
+            <li id="clear-btn" class="mdl-menu__item">Clear</li>
+            <li id="hint-btn"  class="mdl-menu__item">Hint</li>
+            <li id="check-btn" class="mdl-menu__item">Check</li>
+        </ul>
+    </nav>
+
+    <div id="grid-wrapper"></div>
+    
+    <div id="message-wrapper">
+        <div class="message"></div>
+    </div>
+    
     <input type="file" id="file-input" style="display: none;"/>
     
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <script data-main="js/main" src="js/ext/require.js"></script>
-  
 </body>
     
 </html>
