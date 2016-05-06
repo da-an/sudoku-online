@@ -43,6 +43,7 @@ function ($, Grid, System, Validator, Solver) {
 
         $('#import-btn').on('click', function () {
             $('#file-input').click();
+            
         });
 
         $('#file-input').on('change', function () {
