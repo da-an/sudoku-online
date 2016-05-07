@@ -1,6 +1,4 @@
-define('solver', ['validator'], function (Validator) {
-    'use strict';
-    
+define('solver', ['validator'], function (Validator) { 'use strict';
     var gridCopy = null, candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     
     Array.prototype.shuffle = function () {

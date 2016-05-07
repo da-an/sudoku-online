@@ -1,7 +1,5 @@
-'use strict';
-
 define('game', ['jQuery', 'grid', 'system', 'validator', 'solver'],
-function ($, Grid, System, Validator, Solver) {
+function ($, Grid, System, Validator, Solver) { 'use strict';
     var viewUpdate = null;
     
     function solve() {

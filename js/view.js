@@ -1,6 +1,4 @@
-'use strict';
-
-define('view', ['system', 'grid', 'validator'], function(System, Grid, Validator) {
+define('view', ['system', 'grid', 'validator'], function(System, Grid, Validator) { 'use strict';
     function createTable(element) {
         var row, table = $('<table>').addClass('grid');
         for (let i = 0; i < 9; i++) {

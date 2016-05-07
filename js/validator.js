@@ -1,6 +1,4 @@
-'use strict';
-
-define('validator', function() {
+define('validator', function() { 'use strict';
     var checksum = 362880;
     
     function checkSubGrid(solution, row, col) {

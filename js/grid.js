@@ -1,6 +1,4 @@
-'use strict';
-
-define('grid', function() {
+define('grid', function() { 'use strict';
     var grid = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],

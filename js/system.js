@@ -1,6 +1,4 @@
-'use strict';
-
-define('system', ['grid', 'filesaver'], function(Grid) {
+define('system', ['grid', 'filesaver'], function(Grid) { 'use strict';
     var currentMsgTimeout = 0;
 
     function print(message, color = 'Black', timeout = 2000) {
