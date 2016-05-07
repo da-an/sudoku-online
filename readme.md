@@ -1,8 +1,8 @@
-#### Zasady gry :
-- plansza składa się z 81 pól (tabela 9x9) i jest podzielona na 9 bloków (3x3)
-- na każdym polu znajdować się może cyfra 1-9
-- numery nie mogą powtarzać się w kolumnach, wierszach oraz blokach
+## SudokuOnline ![Status](https://img.shields.io/badge/status-development-orange.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
+<p align="justify">
+Projekt na studia na zaliczenie przedmiotu. Sudoku polega na rozwiązaniu planszy składającej się z 81 pól (kwadrat 9x9) podzielonej na 9 bloków (mniejsze kwadraty 3x3). W pola można wpisać cyfrę od 1-9, przy czym numery nie moga się powtarzać w kolumnach, wierszach oraz blokach. Rozwiązanie uznaje się za poprawne gdy cała plansza zostanie wypełniona cyframi, które spełniają wcześniej podane założenia.
+</p>
 
 #### Funkcje :
 - [x] import i eksport planszy sudoku do pliku
@@ -10,4 +10,4 @@
 - [ ] generowanie plansz o różnym poziomie trudności
 - [x] walidacja wprowadzanych danych
 - [x] algorytm do rozwiązywania sudoku
-- [ ] podpowiedzi
+- [x] podpowiedzi
