@@ -11,3 +11,4 @@ Projekt na studia na zaliczenie przedmiotu. Sudoku polega na rozwiązaniu plansz
 - [x] walidacja wprowadzanych danych
 - [x] algorytm do rozwiązywania sudoku
 - [x] podpowiedzi
+- [x] responsywność
