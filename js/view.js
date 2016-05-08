@@ -72,7 +72,7 @@ define('view', ['system', 'grid', 'validator'], function(System, Grid, Validator
     function disableCells() {
         for(let i = 0; i < 9; i++) {
              for(let j = 0; j < 9; j++) {
-                 if(grid[i][j] != 0) {
+                 if(Grid.get()[i][j] != 0) {
                      $('#it' + ((i * 9) + j)).prop("disabled", true);
                  }
              }

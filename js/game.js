@@ -40,14 +40,14 @@ function ($, Grid, System, Validator, Solver) { 'use strict';
         });
 
         $('#import-btn').on('click', function () {
+            View.enableCells();
             $('#file-input').click();
-            
         });
 
         $('#file-input').on('change', function () {
             System.importGridFromFile(this);
-            View.enableCells();
             $(this).val('');
+            setTimeout(View.disableCells, 200);
         });
 
         $('#print-btn').on('click', function () {
