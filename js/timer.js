@@ -33,7 +33,7 @@ define('timer', ['jQuery'], function ($) { 'use strict';
         clearInterval(timer);
         $('#timer').html('00:00:00');
     };                    
-                             
+                                              
     return {
         start : start,
         reset : reset,

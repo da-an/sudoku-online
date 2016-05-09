@@ -33,11 +33,12 @@ function ($, Grid, System, Validator, Solver, Levels, Timer) { 'use strict';
     
     function generate(View, cells) {
         View.enableCells();
+        Grid.clear();
         solve();
         Levels.cleaner(cells);
-        View.disableCells();
         Timer.start();
-    };
+        View.disableCells();
+    };                                                          
                                                               
     function init(View) {
         View.createTable($('#grid-wrapper'));
@@ -66,15 +67,15 @@ function ($, Grid, System, Validator, Solver, Levels, Timer) { 'use strict';
             }, 500);
         });
 
-        $('#easy-btn').on('click', function(){
+        $('#easy-btn').on('click', function() {
             generate(View, 35);
         });
         
-        $('#medium-btn').on('click', function(){
+        $('#medium-btn').on('click', function() {
             generate(View, 40);
         });
         
-        $('#hard-btn').on('click', function(){
+        $('#hard-btn').on('click', function() {
             generate(View, 45);
         });
         
@@ -84,7 +85,6 @@ function ($, Grid, System, Validator, Solver, Levels, Timer) { 'use strict';
 
         $('#clear-btn').on('click', function () {
             View.clearTable();
-            Timer.reset();
             Timer.start();
         });
 
@@ -105,6 +105,7 @@ function ($, Grid, System, Validator, Solver, Levels, Timer) { 'use strict';
     
     return {
         solve : solve,
+        generate : generate,
         getHint : getHint,
         init : init
     }; 

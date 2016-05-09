@@ -13,5 +13,6 @@ require.config({
 require(['jQuery', 'game', 'view'], function($, Game, View) { 'use strict';
     $(document).ready(function () {
         Game.init(View);
+        Game.generate(View, 35);
     });
 });
