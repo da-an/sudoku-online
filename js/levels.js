@@ -1,5 +1,5 @@
 define('levels', ['grid'], function (Grid) { 'use strict';
-    function cleanerEasy(erased) {
+    function cleaner(erased) {
         var row, col, i;
      for(i = 0; i < erased; i++){
          row=Math.floor(Math.random()*9);
@@ -11,6 +11,6 @@ define('levels', ['grid'], function (Grid) { 'use strict';
      }
     };
    return {
-        cleanerEasy : cleanerEasy
+        cleaner : cleaner
     };
 });

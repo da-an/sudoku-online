@@ -62,17 +62,17 @@ function ($, Grid, System, Validator, Solver, Levels) { 'use strict';
 
         $('#easy-btn').on('click', function(){
                     solve();
-                   Levels.cleanerEasy(35);
+                   Levels.cleaner(35);
             
         });
         $('#medium-btn').on('click', function(){
                     solve();
-                    Levels.cleanerEasy(40);
+                    Levels.cleaner(40);
            
         });
         $('#hard-btn').on('click', function(){
                     solve();
-                    Levels.cleanerEasy(45);
+                    Levels.cleaner(45);
             
         });
         
