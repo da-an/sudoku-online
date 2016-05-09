@@ -3,7 +3,7 @@ function ($, Grid, System, Validator, Solver) { 'use strict';
     var viewUpdate = null;
     
     function solve() {
-        if(Validator.checkGrid(Grid.get()) == false) {
+        if(Validator.checkGrid(Grid.get()) === false) {
             System.print("Grid is not correct !", "Red");
             return false;
         }
@@ -12,7 +12,7 @@ function ($, Grid, System, Validator, Solver) { 'use strict';
             localStorage.setItem('viewNeedUpdate', true);
             return true;
         }
-        return false;   
+        return false;
     };
     
     function getHint() {

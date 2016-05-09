@@ -26,12 +26,11 @@ define('view', ['system', 'grid', 'validator'], function(System, Grid, Validator
         ,   val = parseInt($(this).val());
         
         if(!isNaN(val)) {
-            console.log('ok');
             Grid.setField(x, y, val);
             if(Validator.checkConflicts(Grid.get(), x, y, val)) {
                 System.print('Conflict detected !', 'Red');
                 $(this).css('text-shadow', '0 0 0 Red');
-            }
+            } 
         }
         else {
             Grid.setField(x, y, 0);

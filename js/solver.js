@@ -16,30 +16,7 @@ define('solver', ['validator'], function (Validator) { 'use strict';
         gridCopy = grid.slice();
         for(let i = 0; i < 9; i++) {
             gridCopy[i] = grid[i].slice();
-        }  
-    };
-    
-    function solveField(row, col) {
-        if (gridCopy[row][col] == 0) {
-            candidates.shuffle();
-            for(let i = 0; i < candidates.length; i++) {
-                gridCopy[row][col] = candidates[i];
-                if (!Validator.checkConflicts(gridCopy, row, col, candidates[i])
-                    && stepIntoNextField(row, col)) {
-                    return true;
-                }
-                else gridCopy[row][col] = 0;
-            }
-            return false;
         }
-        return stepIntoNextField(row, col);
-    };
-
-    function stepIntoNextField(row, col) {
-        console.log("next field");
-        if(row == 8 && col == 8) return true;
-        else if (row == 8) return solveField(0, col + 1);
-        else return solveField(row + 1, col);
     };
     
     function solve(grid) {
@@ -48,6 +25,28 @@ define('solver', ['validator'], function (Validator) { 'use strict';
             return gridCopy;
         }
         return false;
+    };
+                                                      
+    function solveField(row, col) {
+        if (gridCopy[row][col] === 0) {
+            candidates.shuffle();
+            for(let i = 0; i < candidates.length; i++) {
+                gridCopy[row][col] = candidates[i];
+                if (!Validator.checkConflicts(gridCopy, row, col, candidates[i])
+                   && stepIntoNextField(row, col)) {
+                    return true;
+                }
+            }
+            gridCopy[row][col] = 0;
+            return false;
+        }
+        return stepIntoNextField(row, col);
+    };
+
+    function stepIntoNextField(row, col) {
+        if(row === 8 && col === 8) return true;
+        else if (row === 8) return solveField(0, col + 1);
+        else return solveField(row + 1, col);
     };
     
     function getSolution() {
