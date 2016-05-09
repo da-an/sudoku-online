@@ -1,5 +1,5 @@
-define('game', ['jQuery', 'grid', 'system', 'validator', 'solver'],
-function ($, Grid, System, Validator, Solver) { 'use strict';
+define('game', ['jQuery', 'grid', 'system', 'validator', 'solver', 'levels'],
+function ($, Grid, System, Validator, Solver, Levels) { 'use strict';
     var viewUpdate = null;
     
     function solve() {
@@ -30,6 +30,8 @@ function ($, Grid, System, Validator, Solver) { 'use strict';
         }
         console.log("Unable to generate hint. Try again.");
     };
+                                               
+    
     
     function init(View) {
         View.createTable($('#grid-wrapper'));
@@ -58,6 +60,27 @@ function ($, Grid, System, Validator, Solver) { 'use strict';
             }, 500);
         });
 
+        $('#easy-btn').on('click', function(){
+                    solve();
+                   Levels.cleanerEasy(35);
+            
+        });
+        $('#medium-btn').on('click', function(){
+                    solve();
+                    Levels.cleanerEasy(40);
+           
+        });
+        $('#hard-btn').on('click', function(){
+                    solve();
+                    Levels.cleanerEasy(45);
+            
+        });
+        
+        
+        
+        
+        
+        
         $('#solve-btn').on('click', function () {
             solve();
         });
