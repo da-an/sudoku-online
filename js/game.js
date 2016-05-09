@@ -25,7 +25,8 @@ function ($, Grid, System, Validator, Solver, Levels, Timer) { 'use strict';
                     Grid.setField(row, col, tempGrid[row][col]);
                     localStorage.setItem('viewNeedUpdate', true);
                     return true;
-                }
+                } 
+                else i--;
             }
         }
         console.log("Unable to generate hint. Try again.");
@@ -56,15 +57,22 @@ function ($, Grid, System, Validator, Solver, Levels, Timer) { 'use strict';
         $('#file-input').on('change', function () {
             System.importGridFromFile(this);
             $(this).val('');
-            setTimeout(View.disableCells, 200);
+            setTimeout(function() {
+                View.disableCells();
+                Timer.start();
+            }, 200);
         });
 
         $('#print-btn').on('click', function () {
             $('#logo').hide();
+            $('#timer').hide();
+            $('nav a').hide();
             setTimeout(function() {
                 window.print();
                 $('#logo').show();
-            }, 500);
+                $('#timer').show();
+                $('nav a').show();
+            }, 200);
         });
 
         $('#easy-btn').on('click', function() {
