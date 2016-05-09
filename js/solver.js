@@ -33,7 +33,7 @@ define('solver', ['validator'], function (Validator) { 'use strict';
             for(let i = 0; i < candidates.length; i++) {
                 gridCopy[row][col] = candidates[i];
                 if (!Validator.checkConflicts(gridCopy, row, col, candidates[i])
-                   && stepIntoNextField(row, col)) {
+                                    && stepIntoNextField(row, col)) {
                     return true;
                 }
             }

@@ -32,6 +32,12 @@ nav a {
     color: black;
 }
 
+#timer {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 25px;
+}
+
 #grid-wrapper {
     margin: 0;
     margin-left: auto;

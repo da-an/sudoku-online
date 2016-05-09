@@ -1,5 +1,5 @@
-define('game', ['jQuery', 'grid', 'system', 'validator', 'solver', 'levels'],
-function ($, Grid, System, Validator, Solver, Levels) { 'use strict';
+define('game', ['jQuery', 'grid', 'system', 'validator', 'solver', 'levels', 'timer'],
+function ($, Grid, System, Validator, Solver, Levels, Timer) { 'use strict';
     var viewUpdate = null;
     
     function solve() {
@@ -30,9 +30,15 @@ function ($, Grid, System, Validator, Solver, Levels) { 'use strict';
         }
         console.log("Unable to generate hint. Try again.");
     };
-                                               
     
-    
+    function generate(View, cells) {
+        View.enableCells();
+        solve();
+        Levels.cleaner(cells);
+        View.disableCells();
+        Timer.start();
+    };
+                                                              
     function init(View) {
         View.createTable($('#grid-wrapper'));
         viewUpdate = setInterval(View.update, 500);
@@ -61,25 +67,16 @@ function ($, Grid, System, Validator, Solver, Levels) { 'use strict';
         });
 
         $('#easy-btn').on('click', function(){
-                    solve();
-                   Levels.cleaner(35);
-            
+            generate(View, 35);
         });
+        
         $('#medium-btn').on('click', function(){
-                    solve();
-                    Levels.cleaner(40);
-           
+            generate(View, 40);
         });
+        
         $('#hard-btn').on('click', function(){
-                    solve();
-                    Levels.cleaner(45);
-            
+            generate(View, 45);
         });
-        
-        
-        
-        
-        
         
         $('#solve-btn').on('click', function () {
             solve();
@@ -87,6 +84,8 @@ function ($, Grid, System, Validator, Solver, Levels) { 'use strict';
 
         $('#clear-btn').on('click', function () {
             View.clearTable();
+            Timer.reset();
+            Timer.start();
         });
 
         $('#hint-btn').on('click', function () {
@@ -96,6 +95,7 @@ function ($, Grid, System, Validator, Solver, Levels) { 'use strict';
         $('#check-btn').on('click', function () {
             if(Validator.checkSolution(Grid.get())) {
                 System.print("Congratulations ! Your solution is correct.", "#0093ff");
+                Timer.stop();
             } 
             else {
                 System.print("Your solution is wrong !", "Red");
